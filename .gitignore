@@ -1,2 +1,5 @@
 .env
 .ruff_cache
+build
+dist
+main.spec
