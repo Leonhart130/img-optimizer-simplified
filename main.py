@@ -30,13 +30,13 @@ class MainWindow(QMainWindow):
         self.profile_group = QButtonGroup(self)  # Create a button group
 
         self.selected_profile = ""
-        self.lith_profile = QRadioButton("Lith")
-        self.tys_profile = QRadioButton("Tys")
-        self.profile_group.addButton(self.lith_profile)
-        self.profile_group.addButton(self.tys_profile)
+        self.portrait_profile = QRadioButton("3:4")
+        self.square_profile = QRadioButton("4:4")
+        self.profile_group.addButton(self.portrait_profile)
+        self.profile_group.addButton(self.square_profile)
 
-        self.lith_profile.clicked.connect(self.set_profile)
-        self.tys_profile.clicked.connect(self.set_profile)
+        self.portrait_profile.clicked.connect(self.set_profile)
+        self.square_profile.clicked.connect(self.set_profile)
 
         """ Select operation part """
         label3 = QLabel("3. Sélectionnez l'opération:")
@@ -60,8 +60,8 @@ class MainWindow(QMainWindow):
 
         """ Mount layout part """
         layout.addWidget(label1)
-        layout.addWidget(self.lith_profile)
-        layout.addWidget(self.tys_profile)
+        layout.addWidget(self.portrait_profile)
+        layout.addWidget(self.square_profile)
         layout.addWidget(label2)
         layout.addWidget(select_files_button)
         layout.addWidget(label3)
@@ -75,12 +75,12 @@ class MainWindow(QMainWindow):
 
     def set_profile(self):
         """Set self.selected_profile depending on the radio button checked"""
-        if self.lith_profile.isChecked():
-            self.selected_profile = "lith"
-            print("Profile set to: lith")
-        elif self.tys_profile.isChecked():
-            self.selected_profile = "tys"
-            print("Profile set to: tys")
+        if self.portrait_profile.isChecked():
+            self.selected_profile = "3:4"
+            print("Profile set to: 3:4")
+        elif self.square_profile.isChecked():
+            self.selected_profile = "4:4"
+            print("Profile set to: 4:4")
 
     def set_operation(self):
         """Set self.selected_operation depending on the radio button checked"""
@@ -169,15 +169,15 @@ def check_image_sizes(parent, file_paths: list[str], profile: str) -> bool:
 def optimize(parent, files_paths: list[str], profile: str, operation: str) -> tuple:
     """Optimize images for web,
     for each file in the files_path list:
-    crop and resize the image in 2 sizes depending on profile selected
-    or create a thumbnail
+    crop and resize the image or create a thumbnail depending on profile selected
+    serve 3 images, for small, medium and large screen,
     give random number name to image for CDN optimization
     and create a new directory named product_images in the same folder as the images
     """
-    profiles = ["lith", "tys"]
+    profiles = ["3:4", "4:4"]
     image_sizes = {
-        "lith": {"sm": (300, 400), "md": (600, 800), "lg": (900, 1200)},
-        "tys": {"sm": (300, 300), "md": (600, 600), "lg": (900, 900)},
+        "3:4": {"sm": (300, 400), "md": (600, 800), "lg": (900, 1200)},
+        "4:4": {"sm": (300, 300), "md": (600, 600), "lg": (900, 900)},
     }
 
     if profile not in profiles:
@@ -188,7 +188,7 @@ def optimize(parent, files_paths: list[str], profile: str, operation: str) -> tu
         reply = QMessageBox.question(
             parent,
             "Confirmation",
-            f"The folder '{output_dir}' already exists. Do you want to override it?",
+            f"Le dossier '{output_dir}' existe déjà, override ?",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
         )
         if reply == QMessageBox.StandardButton.No:
