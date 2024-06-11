@@ -10,3 +10,10 @@ The **Image Optimizer** is a desktop application built using PyQt6 and Python. I
 - Optimize images in multiple sizes
 - Automatically handle file naming for CDN optimization
 - Ensure image sizes meet specified criteria
+
+#### Build
+- Installer Python3
+- Cloner le repository
+- Recréer l'environnement virtuel
+- Run `pyinstaller --windowed app.py`
+- Lancer main.exe de /img-optimizer/dist/main
