@@ -34,11 +34,11 @@ The **Image Optimizer** is a desktop application built using PyQt6 and Python. I
 
 1. **Clone the Repository**:
 
-- git clone <repository-url>
+- `git clone git@github.com:Leonhart130/img-optimizer-simplified.git`
 
 2. **Create a Virtual Environment**:
 
-- python -m venv venv
+- `python -m venv venv`
 
 3. **Activate the Virtual Environment**:
 
@@ -53,13 +53,13 @@ The **Image Optimizer** is a desktop application built using PyQt6 and Python. I
 
 4. **Install Dependencies**:
 
-- pip install -r requirements.txt
+- `pip install -r requirements.txt`
 
 ## Usage
 
 1. **Run the Application**:
 
-python main.py
+`python main.py`
 
 2. **Select a Profile**:
 
@@ -85,7 +85,7 @@ python main.py
 
 1. **Create the Executable**:
 
-   'pyinstaller --windowed main.py'
+   `pyinstaller --windowed main.py`
 
 2. **Run the Executable**:
 
