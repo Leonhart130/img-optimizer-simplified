@@ -2,21 +2,27 @@
 
 ---
 
-The **Image Optimizer** is a desktop application built using PyQt6 and Python. It allows users to optimize images by selecting a profile and operation, including resizing, cropping, creating thumbnails, and converting to WebP format with optimized quality. This application is particularly useful for e-commerce, ensuring images are optimized for web usage by generating multiple sizes.
+The **Image Optimizer** is a desktop application built using PyQt6 and Python. It allows users to optimize images by selecting a profile, including optimizing for web usage and resizing images to specific aspect ratios. The application converts images to the WebP format with optimized quality, making it particularly useful for e-commerce to ensure images are efficiently prepared for responsive web use.
 
 ## Features
 
 - **Select Profiles**:
-  - `3:4` and `4:4`: Ideal for e-commerce product images.
-  - `Optimize`: General optimization converting images to WebP format with 85/100 quality.
-- **Perform Operations**:
-  - `Resize and Crop`: Resize images and crop to specified dimensions.
-  - `Create Thumbnail`: Generate thumbnails while maintaining aspect ratio and cropping to exact dimensions.
+
+  - **Optimize**: General optimization converting images to WebP format with 85/100 quality.
+  - **Optimize and Resize**: Optimize and resize images to one of the following aspect ratios:
+    - `1:1 (carré)`
+    - `3:4 (portrait)`
+    - `4:3 (paysage)`
+    - `16:9 (large)`
+    - `9:16 (vertical)`
+
 - **Image Optimization**:
-  - Generate multiple sizes for responsive web usage.
-  - Handle file naming for CDN optimization.
-- **Image Validation**:
-  - Ensure image sizes meet specified criteria before processing.
+  - Convert images to the WebP format for optimized web performance.
+  - Sanitize filenames.
+
+- **Aspect Ratio Resizing**:
+  - Resize images to fit the selected aspect ratio while covering the target dimensions.
+  - Automatically crop images to eliminate any black borders and ensure a clean fit.
 
 ## Requirements
 
@@ -27,40 +33,62 @@ The **Image Optimizer** is a desktop application built using PyQt6 and Python. I
 ## Installation
 
 1. **Clone the Repository**:
-   'git clone <repository-url>'
+
+- git clone <repository-url>
+
 2. **Create a Virtual Environment**:
-   'python -m venv venv'
+
+- python -m venv venv
+
 3. **Activate the Virtual Environment**:
-   - On Windows:
-     'venv\Scripts\activate'
-   - On macOS/Linux:
-     'source venv/bin/activate'
+
+- On Windows:
+  ```
+  venv\Scripts\Activate.ps1
+  ```
+- On macOS/Linux:
+  ```
+  source venv/bin/activate
+  ```
+
 4. **Install Dependencies**:
-   'pip install -r requirements.txt'
+
+- pip install -r requirements.txt
 
 ## Usage
 
 1. **Run the Application**:
-   'python main.py'
+
+python main.py
+
 2. **Select a Profile**:
-   - `3:4`
-   - `4:4`
-   - `Optimize`
-3. **Select an Operation** (not required for `Optimize`):
-   - `Resize and Crop`
-   - `Create Thumbnail`
+
+- **Optimize**: Only optimizes images without resizing.
+- **Optimize and Resize**: Optimizes and resizes images to the selected aspect ratio.
+
+3. **Choose an Aspect Ratio** (if "Optimize and Resize" is selected):
+- `1:1 (carré)`
+- `3:4 (portrait)`
+- `4:3 (paysage)`
+- `16:9 (large)`
+- `9:16 (vertical)`
+
 4. **Select Images**:
-   - Click "Sélectionner les fichiers" to choose images.
+
+- Click "Sélectionner les fichiers" to choose images.
+
 5. **Process Images**:
-   - The application will process and save the images in the appropriate directory (`product_images` or `optimized_images`).
+
+- The application will process and save the images in the appropriate directory (`optimized_images` or `resized_images`).
 
 ## Building an Executable
 
-1. **Install PyInstaller**:
-   'pip install pyinstaller'
-2. **Create the Executable**:
+1. **Create the Executable**:
+
    'pyinstaller --windowed main.py'
-3. **Run the Executable**:
+
+2. **Run the Executable**:
+
    - Navigate to the `dist` directory and run `main.exe` (Windows) or `main` (macOS/Linux).
 
 ## License
